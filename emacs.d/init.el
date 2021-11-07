@@ -23,7 +23,7 @@
 (column-number-mode)
 (global-display-line-numbers-mode t)
 
-;; Recent opened files menu
+;; Recent files
 (recentf-mode 1)
 (setq recentf-max-menu-items 25)
 (setq recentf-max-saved-items 25)
