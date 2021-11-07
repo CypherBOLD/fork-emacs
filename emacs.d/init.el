@@ -1,0 +1,1 @@
+/home/blau/.emacs.d/init.el
