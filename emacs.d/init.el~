@@ -23,11 +23,6 @@
 (column-number-mode)
 (global-display-line-numbers-mode t)
 
-;; Recent opened files menu
-(recentf-mode 1)
-(setq recentf-max-menu-items 25)
-(setq recentf-max-saved-items 25)
-
 ;; Disable line numbers for some modes
 (dolist (mode '(org-mode-hook
                 term-mode-hook
@@ -172,15 +167,14 @@
 (general-define-key
   "C-M-<down>" 'counsel-switch-buffer
   "<escape>"   'keyboard-escape-quit
-  "M-#"        'comment-or-uncomment-region
-  "C-x C-r"    'recentf-open-files)
+  "M-#"        'comment-or-uncomment-region)
 
-;; --- Languages ---
+;; Languages!
 
 ;; PHP mode
 (use-package php-mode)
 
-;; 
+
 ;; Font face
 (set-face-attribute 'default nil :font "Inconsolata" :height 130)
 (set-face-attribute 'mode-line nil :font "Inconsolata" :height 100)
@@ -195,7 +189,7 @@
  '(ispell-dictionary "brasileiro")
  '(ivy-mode t)
  '(package-selected-packages
-   '(php-mode drag-stuff general helpful ivy-rich which-key rainbow-delimiters doom-themes doom-modeline use-package diminish counsel command-log-mode)))
+   '(drag-stuff general helpful ivy-rich which-key rainbow-delimiters doom-themes doom-modeline use-package diminish counsel command-log-mode)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
