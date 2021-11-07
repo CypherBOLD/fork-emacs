@@ -54,10 +54,14 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
+
+;; Sends keystrokes to a designated buffer (good for presentations!)
 (use-package command-log-mode)
 
+;; Remove abbreviate minor mode indicators in modeline
 (use-package diminish)
 
+;; An interactive interface for command completion
 (use-package ivy
   :diminish
   :bind (("C-s" . swiper)
@@ -76,9 +80,11 @@
   :config
   (ivy-mode 1))
 
+;; An even more friendly interface for ivy and counsel
 (use-package ivy-rich
   :init (ivy-rich-mode 1))
 
+;; Completion framework for ivy
 (use-package counsel
   :bind (("M-x" . counsel-M-x)
 	 ("C-x b" . counsel-ibuffer)
@@ -88,6 +94,7 @@
   :config
   (setq ivy-initial-inputs-alist nil))
 
+;; More helpful help info
 (use-package helpful
   :custom
   (counsel-describe-function-function #'helpful-callable)
@@ -98,11 +105,14 @@
   ([remap describe-variable] . counsel-describe-variable)
   ([remap describe-key] . helpful-key))
 
+
+;; Modeline style from doom-emacs
 (use-package doom-modeline
   :ensure t
   :init (doom-modeline-mode 1)
   :custom (doom-modeline-height 30))
 
+;; Themes from doom-emacs
 (use-package doom-themes
   :ensure t
   :config
@@ -121,9 +131,11 @@
   ;; Corrects (and improves) org-mode's native fontification.
   (doom-themes-org-config))
 
+;; Set different colors for different delimiters levels
 (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode))
 
+;; Displays the key bindings following currently entered incomplete prefixes 
 (use-package which-key
   :init (which-key-mode)
   :diminish which-key-mode
@@ -143,10 +155,12 @@
 ;;     "!"  'shell-command
 ;;     ":"  'eval-expression))
 
+;; Moves lines and words
 (use-package drag-stuff)
 (drag-stuff-global-mode 1)
 (drag-stuff-define-keys)
 
+;; A more convenient method for binding keys
 (use-package general)
 
 ;; More key bindings
@@ -162,6 +176,7 @@
 (set-face-attribute 'default nil :font "Inconsolata" :height 130)
 (set-face-attribute 'mode-line nil :font "Inconsolata" :height 100)
 
+;; Did this come with doom-themes?!
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
