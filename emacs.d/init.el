@@ -44,7 +44,7 @@
 
 (setq package-archives '(("melpa" . "https://melpa.org/packages/")
 			 ("org" . "https://orgmode.org/elpa/")
-			 ("elpa" . "https://elap.gnu.org/packages/")))
+			 ("elpa" . "https://elpa.gnu.org/packages/")))
 
 ;; Initialize package system
 (package-initialize)
@@ -147,19 +147,6 @@
   :config
   (setq which-key-idle-delay 0.3))
 
-;; (use-package general
-;;   :config
-;;   (general-create-definer global-definer
-;;     :keymaps 'override
-;;     :states  '(insert normal insert visual emacs operator motion hybrid)
-;;     :prefix  "SPC"
-;;     :global-prefix "C-SPC")
-;;   (global-definer
-;;     "t"  '(:ignore t :which-key "toggles")
-;;     "tt" '(counsel-load-theme :which-key "chose theme")
-;;     "!"  'shell-command
-;;     ":"  'eval-expression))
-
 ;; Moves lines and words
 (use-package drag-stuff)
 (drag-stuff-global-mode 1)
@@ -174,6 +161,32 @@
   "<escape>"   'keyboard-escape-quit
   "M-#"        'comment-or-uncomment-region
   "C-x C-r"    'recentf-open-files)
+
+;; Corfu completion
+(use-package corfu
+  :init
+  (corfu-global-mode))
+
+;; Optionally use the `orderless' completion style.
+(use-package orderless
+  :init
+  (setq completion-styles '(orderless)
+        completion-category-defaults nil
+        completion-category-overrides '((file (styles . (partial-completion))))))
+
+;; Dabbrev works with Corfu
+(use-package dabbrev
+  ;; Swap M-/ and C-M-/
+  :bind (("M-/" . dabbrev-completion)
+         ("C-M-/" . dabbrev-expand)))
+
+;; A few more useful configurations...
+(use-package emacs
+  :init
+  ;; TAB cycle if there are only few candidates
+  (setq completion-cycle-threshold 3)
+  (setq tab-always-indent 'complete))
+
 
 ;; --- Languages ---
 
@@ -195,7 +208,8 @@
  '(ispell-dictionary "brasileiro")
  '(ivy-mode t)
  '(package-selected-packages
-   '(php-mode drag-stuff general helpful ivy-rich which-key rainbow-delimiters doom-themes doom-modeline use-package diminish counsel command-log-mode)))
+   '(orderless corfu php-mode drag-stuff general helpful ivy-rich which-key rainbow-delimiters doom-themes doom-modeline use-package diminish counsel command-log-mode))
+ '(recentf-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
