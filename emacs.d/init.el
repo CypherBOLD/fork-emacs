@@ -213,6 +213,9 @@
 ;; Font face
 (set-face-attribute 'default nil :font "Inconsolata" :height 130)
 (set-face-attribute 'mode-line nil :font "Inconsolata" :height 100)
+(set-face-attribute 'fixed-pitch nil :font "Inconsolata" :height 130)
+(set-face-attribute 'variable-pitch nil :font "Cantarell" :height 130 :weight 'regular)
+
 
 ;; Did this come with doom-themes?!
 (custom-set-variables
