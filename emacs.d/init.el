@@ -160,7 +160,8 @@
   "C-M-<down>" 'counsel-switch-buffer
   "<escape>"   'keyboard-escape-quit
   "M-#"        'comment-or-uncomment-region
-  "C-x C-r"    'recentf-open-files)
+  "C-x C-r"    'recentf-open-files
+  "C-x w"      'elfeed)
 
 ;; Corfu completion
 (use-package corfu
@@ -187,11 +188,26 @@
   (setq completion-cycle-threshold 3)
   (setq tab-always-indent 'complete))
 
+;; --- Recomendações do Vinicius ---
 
-;; --- Languages ---
+;; Ícones no dired
+(use-package all-the-icons-dired)
+(add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
+
+;; Cliente RSS
+(use-package elfeed)
+(setq elfeed-feeds
+      '("http://www.dicas-l.com.br/index.xml"
+        "https://elias.praciano.Languages/com/"))
 
 ;; PHP mode
 (use-package php-mode)
+
+;; Markdown mode
+(use-package markdown-mode)
+
+;; Edit indirect
+(use-package edit-indirect)
 
 ;; 
 ;; Font face
@@ -205,10 +221,12 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(column-number-mode t)
+ '(elfeed-feeds
+   '("http://www.dicas-l.com.br/index.xml" "https://elias.praciano.com/feed/"))
  '(ispell-dictionary "brasileiro")
  '(ivy-mode t)
  '(package-selected-packages
-   '(orderless corfu php-mode drag-stuff general helpful ivy-rich which-key rainbow-delimiters doom-themes doom-modeline use-package diminish counsel command-log-mode))
+   '(edit-indirect markdown-mode elfeed all-the-icons-dired all-the-icons-dired-mode orderless corfu php-mode drag-stuff general helpful ivy-rich which-key rainbow-delimiters doom-themes doom-modeline use-package diminish counsel command-log-mode))
  '(recentf-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
