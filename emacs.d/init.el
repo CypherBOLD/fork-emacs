@@ -19,9 +19,20 @@
 ;; Disable Ctrl-Z (suspend frame)
 (global-unset-key (kbd "C-z"))
 
+;; Typed text replaces the selection and delete (not kill)
+;; the highlighted region by pressing DEL
+(delete-selection-mode t)
+
 ;; Line numbers
 (column-number-mode)
 (global-display-line-numbers-mode t)
+( hl-line-mode t)
+
+
+;; Indentation
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 4)
+(setq indent-line-function 'insert-tab)
 
 ;; Recent files
 (recentf-mode 1)
@@ -31,7 +42,7 @@
 ;; Disable line numbers for some modes
 (dolist (mode '(org-mode-hook
                 term-mode-hook
-		shell-mode-hook
+		        shell-mode-hook
                 eshell-mode-hook))
   (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
@@ -43,8 +54,8 @@
 (require 'package)
 
 (setq package-archives '(("melpa" . "https://melpa.org/packages/")
-			 ("org" . "https://orgmode.org/elpa/")
-			 ("elpa" . "https://elpa.gnu.org/packages/")))
+			             ("org" . "https://orgmode.org/elpa/")
+			             ("elpa" . "https://elpa.gnu.org/packages/")))
 
 ;; Initialize package system
 (package-initialize)
@@ -209,7 +220,23 @@
 ;; Edit indirect
 (use-package edit-indirect)
 
-;; 
+;; Dashboard
+(use-package dashboard
+  :ensure t
+  :config
+  (dashboard-setup-startup-hook))
+(setq dashboard-startup-banner "~/.emacs.d/emacs-debxp.txt")
+(setq dashboard-center-content t)
+(setq dashboard-show-shortcuts t)
+(setq dashboard-items '((bookmarks . 10)
+                        (projects . 10)
+		                (recents   . 5)))
+;; Projectile
+(use-package projectile
+  :init (projectile-mode))
+
+(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+
 ;; Font face
 (set-face-attribute 'default nil :font "Inconsolata" :height 130)
 (set-face-attribute 'mode-line nil :font "Inconsolata" :height 100)
@@ -229,7 +256,7 @@
  '(ispell-dictionary "brasileiro")
  '(ivy-mode t)
  '(package-selected-packages
-   '(edit-indirect markdown-mode elfeed all-the-icons-dired all-the-icons-dired-mode orderless corfu php-mode drag-stuff general helpful ivy-rich which-key rainbow-delimiters doom-themes doom-modeline use-package diminish counsel command-log-mode))
+   '(projectile dashboard edit-indirect markdown-mode elfeed all-the-icons-dired all-the-icons-dired-mode orderless corfu php-mode drag-stuff general helpful ivy-rich which-key rainbow-delimiters doom-themes doom-modeline use-package diminish counsel command-log-mode))
  '(recentf-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

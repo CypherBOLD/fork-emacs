@@ -1,0 +1,137 @@
+# Emacs: primeiros passos
+
+    * Por que aprender a usar
+    * Abrir no terminal e na GUI
+    * Abrir e fechar arquivos
+    * Salvar e renomear arquivos
+    * Recortar, copiar e colar
+    * Selecionar regiões
+    * Navegar entre buffers e janelas
+
+## Por que aprender...
+
+    * Só posso falar dos meus motivos!
+
+        - Ambiente integrado de produção
+	- Ambiente integrado de desenvolvimento (IDE)
+        - Uso consistente na GUI e no terminal
+	- Moldável às minhas necessidades
+        - Ajustável aos meus caprichos
+	- Mas o principal motivo é por que o Emacs...
+
+		 ,= ,-_-. =.
+		((_/)o o(\_))
+		 `-'(. .)`-'
+		     \_/
+
+		  É GNUUUU!
+
+## Como abrir o Emacs...
+
+    * Na GUI           : lançador no menu
+    * No terminal      : lançador e comando (`emacs -nw`)
+    * Sem configurações: `emacs --no-init-file`
+
+## Como sair do Emacs...
+
+    * Atalho        : C-x C-c
+    * Pelo menu     : File » Quit
+    * Atalho do menu: F10 » File » Quit
+
+## Ações básicas com arquivos...
+
+    * Abrir               : C-x C-f CAMINHO/NOME_DO_ARQUIVO
+    * Criar (com nome)    : C-x C-f CAMINHO/NOVO_ARQUIVO
+    * Criar (buffer vazio): C-x b NOME_DO_BUFFER
+    * Salvar              : C-x C-s
+    * Salvar como         : C-x C-w
+    * Inserir de arquivo  : C-x i CAMINHO/NOME_DO_ARQUIVO
+    * Substituir buffer   : C-x C-v CAMINHO/NOME_DO_ARQUIVO
+
+## Navegação por buffers e janelas...
+
+    * Circular para buffer à direita (próximo)  : C-x →
+    * Circular para buffer à esquerda (anterior): C-x ←
+    * Circular entre janelas                    : C-x o
+    * Criar janela abaixo                       : C-x 2
+    * Criar janela ao lado                      : C-x 3
+    * Fechar janela em uso                      : C-x 0
+    * Fechar todas as outras janelas            : C-x 1
+    * Fechar (matar) buffer                     : C-x k ([TAB] para ver uma lista)
+    * Alternar entre buffers                    : C-x b NOME_DO_BUFFER
+    * Menu de buffers: C-x C-b
+    
+        - Circular até a janela aberta (C-x o)
+	- Navegar até o nome do buffer e teclar [ENTER]
+	- Fechar todas as outras janelas: (C-x 1)
+
+## Navegação no texto...
+
+    * Caractere à esquerda: tecla ←   (C-b)
+    * Caractere à direita : tecla →   (C-f)
+    * Linha acima         : tecla ↑   (C-p)
+    * Linha abaixo        : tecla ↓   (C-n)
+    * Palavra anterior    : C-←       (M-b)
+    * Próxima palavra     : C-→       (M-f)
+    * Início da linha     : Home      (C-a)
+    * Fim da linha        : End       (C-e)
+    * Início do buffer    : C-Home    (M-<)
+    * Fim do buffer       : C-End     (M->)
+
+## Seleção de texto...
+
+    * Movimentando o cursor com [SHIFT] pressionada
+    * Iniciar/terminar seleção: C-SPC
+    * Selecionar tudo: C-x h (teclar 2x 'C-SPC' desativa)
+
+## Área de transferência...
+
+    * Copiar  : M-w
+    * Recortar: C-w (kill)
+    * Colar   : C-y (yank)
+    * Pop-yank: M-y
+
+        - Permite circular conteúdo da área de transferência
+        - Após colar com C-y, inicia a circulação com  M-y
+
+    * Recortar do cursor ao fim da linha: C-k
+    * Recortar do início ao fim da linha: C-a C-k
+
+## Outras dicas...
+
+    * Desfazer ações: C-/ (ou C-x u)
+
+    * Cancelar comandos: C-g
+
+    * Para refazer ações, logo após desfazer, teclar: C-g C-/
+
+    * Existem vários recursos e modos interessantes que podem
+      ser ativados ou desativados através do prefixo M-x
+
+    * Ativar/desativar um desses recursos: M-x NOME_DO_MODO
+    
+	- Numeração de linhas          : M-x display-line-numbers-mode
+	- Destaque da linha correbte   : M-x hl-line-mode
+	- Substituir seleção ao digitar: M-x delete-selection-mode
+	- Modo CUA de copiar e colar   : M-x cua-mode
+	- Mudar fonte                  : M-x set-frame-font [ENTER] FONTE-TAMANHO
+	- Mudar cor da fonte           : M-x set-foreground-color [ENTER] COR (hexa ou nome)
+	- Mudar cor de fundo           : M-x set-background-color [ENTER] COR (hexa ou nome)
+	- Mudar tema                   : M-x load-theme [ENTER] TEMA ([TAB] para os nomes)
+        - Ocultar/exibir menu          : M-x menu-bar-mode
+	- Ocultar/exibir ferramentas   : M-x tool-bar-mode
+	- Ocultar/exibir rolagem       : M-x scroll-bar-mode
+	- Ocultar/exibir franjas       : M-x set-fringe-style [ENTER] no-fringes
+	
+    * Os nomes dos modos e comandos iniciados com M-x podem ser
+      autocompletados com a tecla [TAB]
+
+    * Verificação ortográfica:
+
+        - Verificar palavra      : M-$ (sobre a palavra)
+	- Verificar buffer       : M-x ispell
+	- Ajuda da verificação   : Com o ispell iniciado, teclar ?
+	- Suspender a verificação: Com o ispell iniciado, teclar M-x
+	- Matar a verificação    : Com o ispell suspenso, teclar M-x ispell-kill-ispell
+        - Trocar de dicionário   : M-x ispell-change-dictionary [ENTER] ([TAB] para uma lista)
+
