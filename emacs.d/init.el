@@ -121,7 +121,6 @@
   ([remap describe-variable] . counsel-describe-variable)
   ([remap describe-key] . helpful-key))
 
-
 ;; Modeline style from doom-emacs
 (use-package doom-modeline
   :ensure t
@@ -172,7 +171,10 @@
   "<escape>"   'keyboard-escape-quit
   "M-#"        'comment-or-uncomment-region
   "C-x C-r"    'recentf-open-files
-  "C-x w"      'elfeed)
+  "C-x w"      'elfeed
+  "C-c p"      'projectile-command-map
+  "C-x o"      'next-multiframe-window
+  "C-c C-d"    '("C-a C-SPC C-n M-w C-y" :which-key "duplicate line"))
 
 ;; Corfu completion
 (use-package corfu
@@ -212,7 +214,8 @@
         "https://elias.praciano.Languages/com/"))
 
 ;; PHP mode
-(use-package php-mode)
+(use-package php-mode
+  :mode (".php" . php-mode))
 
 ;; Markdown mode
 (use-package markdown-mode
@@ -237,11 +240,10 @@
 (setq dashboard-items '((bookmarks . 10)
                         (projects . 10)
 		                (recents   . 5)))
+
 ;; Projectile
 (use-package projectile
   :init (projectile-mode))
-
-(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 
 ;; Font face
 (set-face-attribute 'default nil :font "Inconsolata" :height 130)

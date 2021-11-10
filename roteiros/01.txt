@@ -13,24 +13,24 @@
     * Só posso falar dos meus motivos!
 
         - Ambiente integrado de produção
-	- Ambiente integrado de desenvolvimento (IDE)
+        - Ambiente integrado de desenvolvimento (IDE)
         - Uso consistente na GUI e no terminal
-	- Moldável às minhas necessidades
+        - Moldável às minhas necessidades
         - Ajustável aos meus caprichos
-	- Mas o principal motivo é por que o Emacs...
+        - Mas o principal motivo é por que o Emacs...
 
-		 ,= ,-_-. =.
-		((_/)o o(\_))
-		 `-'(. .)`-'
-		     \_/
-
-		  É GNUUUU!
+           ,= ,-_-. =.
+          ((_/)o o(\_))
+           `-'(. .)`-'
+               \_/
+    
+          É GNUUUUUU!
 
 ## Como abrir o Emacs...
 
     * Na GUI           : lançador no menu
-    * No terminal      : lançador e comando (`emacs -nw`)
-    * Sem configurações: `emacs --no-init-file`
+    * No terminal      : lançador e comando (emacs -nw)
+    * Sem configurações: emacs --no-init-file
 
 ## Como sair do Emacs...
 
@@ -118,7 +118,7 @@
 	- Mudar cor da fonte           : M-x set-foreground-color [ENTER] COR (hexa ou nome)
 	- Mudar cor de fundo           : M-x set-background-color [ENTER] COR (hexa ou nome)
 	- Mudar tema                   : M-x load-theme [ENTER] TEMA ([TAB] para os nomes)
-        - Ocultar/exibir menu          : M-x menu-bar-mode
+    - Ocultar/exibir menu          : M-x menu-bar-mode
 	- Ocultar/exibir ferramentas   : M-x tool-bar-mode
 	- Ocultar/exibir rolagem       : M-x scroll-bar-mode
 	- Ocultar/exibir franjas       : M-x set-fringe-style [ENTER] no-fringes
@@ -129,9 +129,9 @@
     * Verificação ortográfica:
 
         - Verificar palavra      : M-$ (sobre a palavra)
-	- Verificar buffer       : M-x ispell
-	- Ajuda da verificação   : Com o ispell iniciado, teclar ?
-	- Suspender a verificação: Com o ispell iniciado, teclar M-x
-	- Matar a verificação    : Com o ispell suspenso, teclar M-x ispell-kill-ispell
+        - Verificar buffer       : M-x ispell
+        - Ajuda da verificação   : Com o ispell iniciado, teclar ?
+        - Suspender a verificação: Com o ispell iniciado, teclar M-x
+        - Matar a verificação    : Com o ispell suspenso, teclar M-x ispell-kill-ispell
         - Trocar de dicionário   : M-x ispell-change-dictionary [ENTER] ([TAB] para uma lista)
 
