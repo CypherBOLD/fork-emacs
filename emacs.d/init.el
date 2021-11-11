@@ -1,10 +1,16 @@
+;; Variables
+(defvar debmx/fixed-font-size 130)
+(defvar debmx/variable-font-size 130)
+(defvar debmx/modeline-font-size 100)
+
+
 ;; Disable startup screen
 (setq inhibit-startup-message t)
 
 (scroll-bar-mode -1)    ; Disable visible scrollbar
 (tool-bar-mode -1)      ; Disable toolbar
 (tooltip-mode -1)       ; Disable tooltips
-(set-fringe-mode 0)     ; No side paddings!
+(set-fringe-mode 10)    ; No side paddings!
 (menu-bar-mode -1)      ; Disable menu bar
 
 ;; Use visual bell
@@ -16,6 +22,11 @@
 (setq mouse-wheel-follow-mouse 't)                   ; scroll window under mouse
 (setq scroll-step 1)                                 ; keyboard scroll one line at a time
 
+;; Font face
+(set-face-attribute 'default nil :font "Inconsolata" :height debmx/fixed-font-size)
+(set-face-attribute 'fixed-pitch nil :font "Inconsolata" :height debmx/fixed-font-size)
+(set-face-attribute 'variable-pitch nil :font "Cantarell" :height debmx/variable-font-size :weight 'regular)
+
 ;; Disable Ctrl-Z (suspend frame)
 (global-unset-key (kbd "C-z"))
 
@@ -23,11 +34,27 @@
 ;; the highlighted region by pressing DEL
 (delete-selection-mode t)
 
+;; Quebras de linha
+(global-visual-line-mode t)
+
+;; Faz com que a navegação por linhas quebradas aconteça
+;; pelas linhas lógicas em vez das linhas visuais quando
+;; visual-line-mode está ativado.
+;;   (setq line-move-visual nil)
+
 ;; Line numbers
 (column-number-mode)
 (global-display-line-numbers-mode t)
-( hl-line-mode t)
 
+;; Disable line numbers for some modes
+(dolist (mode '(org-mode-hook
+                term-mode-hook
+                shell-mode-hook
+                eshell-mode-hook))
+  (add-hook mode (lambda () (display-line-numbers-mode 0))))
+
+;; Line highlight
+(global-hl-line-mode t)
 
 ;; Indentation
 (setq-default indent-tabs-mode nil)
@@ -38,13 +65,6 @@
 (recentf-mode 1)
 (setq recentf-max-menu-items 25)
 (setq recentf-max-saved-items 25)
-
-;; Disable line numbers for some modes
-(dolist (mode '(org-mode-hook
-                term-mode-hook
-		        shell-mode-hook
-                eshell-mode-hook))
-  (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
 ;; Override some modes which derive from the above
 (dolist (mode '(org-mode-hook))
@@ -146,6 +166,8 @@
   ;; Corrects (and improves) org-mode's native fontification.
   (doom-themes-org-config))
 
+(set-face-attribute 'mode-line nil :font "Inconsolata" :height debmx/modeline-font-size)
+
 ;; Set different colors for different delimiters levels
 (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode))
@@ -245,11 +267,7 @@
 (use-package projectile
   :init (projectile-mode))
 
-;; Font face
-(set-face-attribute 'default nil :font "Inconsolata" :height 130)
-(set-face-attribute 'mode-line nil :font "Inconsolata" :height 100)
-(set-face-attribute 'fixed-pitch nil :font "Inconsolata" :height 130)
-(set-face-attribute 'variable-pitch nil :font "Cantarell" :height 130 :weight 'regular)
+
 
 
 ;; Did this come with doom-themes?!

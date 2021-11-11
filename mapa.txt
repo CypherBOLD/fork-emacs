@@ -1,3 +1,5 @@
+MAPA DE ATALHOS!
+
 PREFIXO C-x (C = Ctrl | C-g = cancela os comandos)
         |
         |
