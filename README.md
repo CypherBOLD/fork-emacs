@@ -1,4 +1,4 @@
-# emacs
+# Série: Conhecendo o Emacs
 
 Configurações apresentadas nos vídeos:
 
