@@ -20,7 +20,7 @@
 (tool-bar-mode -1)                      ; no tools bar
 (scroll-bar-mode -1)                    ; no scroll bars
 (set-fringe-mode 10)                    ; frame edges set to 10px
-(column-number-mode 1)                  ; absolute numbering
+(column-number-mode 1)                  ; show current column in modeline
 (recentf-mode 1)                        ; remember recent files
 (save-place-mode 1)                     ; remember cursor position
 (savehist-mode 1)                       ; enable history saving
@@ -39,6 +39,8 @@
 
 ;; Disable C-z
 (global-unset-key (kbd "C-z"))
+
+;; Activate new window
 (global-set-key "\C-x2" (lambda ()
               (interactive)
               (split-window-vertically) (other-window 1)))
