@@ -97,6 +97,10 @@
 ;; Load Modus Theme
 (load-theme 'modus-vivendi t)
 
+;; Enable matching parenthesis highlight
+(setq show-paren-style 'mixed)
+(show-paren-mode 1)
+
 ;; Package 'rainbow-delimiters'
 (use-package rainbow-delimiters)
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
