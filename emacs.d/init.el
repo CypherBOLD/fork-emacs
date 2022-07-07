@@ -201,11 +201,10 @@
      (php . t)
      (C . t))))
 
+(use-package visual-fill-column
+  :hook ('org-mode-hook . 'debmx/visual-fill-column-defaults))
+
 (require 'org-indent)
-
-(require 'visual-fill-column)
-(add-hook 'org-mode-hook 'debmx/visual-fill-column-defaults)
-
 (require 'org-tempo)
 
 (add-to-list 'org-structure-template-alist '("awk" . "src awk"))
