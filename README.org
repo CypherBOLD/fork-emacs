@@ -3,7 +3,7 @@
 
 * Emacs settings
 
-This file is named =~/.emacs.d/emacs.org= and loaded by [[init.el][~/.emacs.d/init.el]].
+This file is named =~/.emacs.d/emacs.org= and loaded by [[emacs.d/init.el][~/.emacs.d/init.el]].
 
 ** General settings
 
