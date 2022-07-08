@@ -3,12 +3,7 @@
 
 * Emacs settings
 
-To load this org file as a config file, put only the code below on =init.el=:
-
-#+begin_src emacs-lisp
-  ;; (org-babel-load-file
-  ;;  (expand-file-name "emacs.org" user-emacs-directory))
-#+end_src
+This file is named =~/.emacs.d/emacs.org= and loaded by [[init.el][~/.emacs.d/init.el]].
 
 ** General settings
 
