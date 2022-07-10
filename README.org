@@ -174,7 +174,7 @@ This file is named =~/.emacs.d/emacs.org= and loaded by [[emacs.d/init.el][~/.em
 #+begin_src emacs-lisp
   (use-package dired
     :ensure nil
-    :custom ((dired-listing-switches "-lahX --group-directories-first")
+    :custom ((dired-listing-switches "-lah --group-directories-first")
              (delete-by-moving-to-trash t))
     :commands (dired dired-jump)
     :bind (("C-x C-j" . dired-jump)))
@@ -189,25 +189,25 @@ This file is named =~/.emacs.d/emacs.org= and loaded by [[emacs.d/init.el][~/.em
 *** Dired hide dotfiles
 
 #+begin_src emacs-lisp
-      (use-package dired-hide-dotfiles
-        :hook (dired-mode . dired-hide-dotfiles-mode)
-        :bind (("C-z h" . dired-hide-dotfiles-mode)))
+  (use-package dired-hide-dotfiles
+    :hook (dired-mode . dired-hide-dotfiles-mode)
+    :bind (("C-z h" . dired-hide-dotfiles-mode)))
 #+end_src
 
 *** Dired open
 
 #+begin_src emacs-lisp
-    (use-package dired-open
-      :config
-      (setq dired-open-extensions '(("jpeg" . "sxiv")
-                                    ("png" . "sxiv")
-                                    ("jpg" . "sxiv")
-                                    ("gif" . "sxiv")
-                                    ("mkv" . "mpv")
-                                    ("mp4" . "mpv")
-                                    ("mp3" . "mpv")
-                                    ("ogg" . "mpv")
-                                    ("opus" . "mpv"))))
+  (use-package dired-open
+    :config
+    (setq dired-open-extensions '(("jpeg" . "sxiv")
+                                  ("png" . "sxiv")
+                                  ("jpg" . "sxiv")
+                                  ("gif" . "sxiv")
+                                  ("mkv" . "mpv")
+                                  ("mp4" . "mpv")
+                                  ("mp3" . "mpv")
+                                  ("ogg" . "mpv")
+                                  ("opus" . "mpv"))))
 #+end_src
 
 ** Theme and appearance
@@ -545,6 +545,14 @@ Highlights cursor position
   (add-to-list 'org-structure-template-alist '("sh"  . "src shell"))
   (add-to-list 'org-structure-template-alist '("cfg" . "src unix-config"))
   (add-to-list 'org-structure-template-alist '("lisp" . "src lisp"))
+#+end_src
+
+*** Org auto-tangle
+
+#+begin_src emacs-lisp
+  (use-package org-auto-tangle
+    :defer t
+    :hook (org-mode . org-auto-tangle-mode))
 #+end_src
 
 ** Misc tools
