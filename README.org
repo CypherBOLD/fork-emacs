@@ -98,12 +98,6 @@ This file is named =~/.emacs.d/emacs.org= and loaded by [[emacs.d/init.el][~/.em
 (put 'dired-find-alternate-file 'disabled nil)
 #+end_src
 
-*** Open dired in 'ls -lahX' format and sort dirs first
-
-#+begin_src emacs-lisp
-(setq-default dired-listing-switches "-lahX --group-directories-first")
-#+end_src
-
 *** Aks y/n instead of yes/no
 
 #+begin_src emacs-lisp
@@ -171,6 +165,49 @@ This file is named =~/.emacs.d/emacs.org= and loaded by [[emacs.d/init.el][~/.em
     (package-install 'use-package))
   (require 'use-package)
   (setq use-package-always-ensure t)
+#+end_src
+
+** File Management
+
+*** Dired
+
+#+begin_src emacs-lisp
+  (use-package dired
+    :ensure nil
+    :custom ((dired-listing-switches "-lahX --group-directories-first")
+             (delete-by-moving-to-trash t))
+    :commands (dired dired-jump)
+    :bind (("C-x C-j" . dired-jump)))
+#+end_src
+
+*** Dired single
+
+#+begin_src emacs-lisp
+  (use-package dired-single)
+#+end_src
+
+*** Dired hide dotfiles
+
+#+begin_src emacs-lisp
+      (use-package dired-hide-dotfiles
+        :hook (dired-mode . dired-hide-dotfiles-mode)
+        :bind (("C-z h" . dired-hide-dotfiles-mode)))
+#+end_src
+
+*** Dired open
+
+#+begin_src emacs-lisp
+    (use-package dired-open
+      :config
+      (setq dired-open-extensions '(("jpeg" . "sxiv")
+                                    ("png" . "sxiv")
+                                    ("jpg" . "sxiv")
+                                    ("gif" . "sxiv")
+                                    ("mkv" . "mpv")
+                                    ("mp4" . "mpv")
+                                    ("mp3" . "mpv")
+                                    ("ogg" . "mpv")
+                                    ("opus" . "mpv"))))
 #+end_src
 
 ** Theme and appearance
