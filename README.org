@@ -92,6 +92,24 @@ This file is named =~/.emacs.d/emacs.org= and loaded by [[emacs.d/init.el][~/.em
   (put 'downcase-region 'disabled nil)
 #+end_src
 
+*** Enable 'a' key to open dir in dired-mode
+
+#+begin_src emacs-lisp
+(put 'dired-find-alternate-file 'disabled nil)
+#+end_src
+
+*** Open dired in 'ls -lah' format
+
+#+begin_src emacs-lisp
+(setq-default dired-listing-switches "-lah")
+#+end_src
+
+*** Aks y/n instead of yes/no
+
+#+begin_src emacs-lisp
+(fset 'yes-or-no-p 'y-or-n-p)
+#+end_src
+
 *** Send custom settings to another file
 
 #+begin_src emacs-lisp
@@ -207,8 +225,8 @@ This file is named =~/.emacs.d/emacs.org= and loaded by [[emacs.d/init.el][~/.em
 
 #+begin_src emacs-lisp
   ;; Força a minha definição de fontes na mode line
-  (set-face-attribute 'mode-line nil :font "Roboto Mono" :height 90)
-  (set-face-attribute 'mode-line-inactive nil :font "Roboto Mono" :height 90)
+  (set-face-attribute 'mode-line nil :font "Inconsolata" :height 100)
+  (set-face-attribute 'mode-line-inactive nil :font "Inconsolata" :height 100)
 
 #+end_src
 
@@ -492,3 +510,21 @@ Highlights cursor position
   (add-to-list 'org-structure-template-alist '("lisp" . "src lisp"))
 #+end_src
 
+** Misc tools
+
+*** Terminal
+
+
+Debian requires:
+
+- ~cmake~
+- ~libtool-bin~
+- ~libvterm-dev~
+
+#+begin_src emacs-lisp
+  (use-package vterm
+    :commands vterm
+    :config
+    (setq vterm-max-scrollback 10000
+          term-prompt-regexp "^[^#$%>\n]*[#$%>] *"))
+#+end_src
