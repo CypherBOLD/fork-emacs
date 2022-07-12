@@ -6,6 +6,11 @@
 This file is named =~/.emacs.d/emacs.org= and loaded by [[emacs.d/init.el][~/.emacs.d/init.el]].
 
 ** General settings
+*** Garbage collection
+
+#+begin_src emacs-lisp
+(setq gc-cons-threshold (* 50 1000 1000))
+#+end_src
 
 *** Fix 'obsolete cl' warning
 
@@ -26,6 +31,13 @@ This file is named =~/.emacs.d/emacs.org= and loaded by [[emacs.d/init.el][~/.em
         mouse-wheel-progressive-speed nil            ; don't accelerate
         mouse-wheel-follow-mouse 't                  ; scroll window under mouse cursor
         scroll-step 1)                               ; scroll 1 line with keyboard
+
+#+end_src
+
+*** Window manager title
+
+#+begin_src emacs-lisp
+  (setq frame-title-format "%b - emacs")
 #+end_src
 
 *** Disable clipboard saving to X clipboard manager on exit
@@ -136,7 +148,7 @@ This file is named =~/.emacs.d/emacs.org= and loaded by [[emacs.d/init.el][~/.em
     (debmx/set-font-faces))
 #+end_src
 
-*** Append auto-modes
+*** Append some extensions to auto-modes
 
 #+begin_src emacs-lisp
   (setq auto-mode-alist
@@ -165,6 +177,63 @@ This file is named =~/.emacs.d/emacs.org= and loaded by [[emacs.d/init.el][~/.em
     (package-install 'use-package))
   (require 'use-package)
   (setq use-package-always-ensure t)
+#+end_src
+
+** Misc tools
+*** All the icons
+
+#+begin_src emacs-lisp
+  (use-package all-the-icons-dired
+  :custom (setq all-the-icons-scale-factor 0.9)
+    :hook (dired-mode . all-the-icons-dired-mode))
+#+end_src
+
+*** Pagebreak lines
+
+#+begin_src emacs-lisp
+  (use-package page-break-lines
+    :ensure t)
+#+end_src
+
+*** Centaur tabs
+
+#+begin_src emacs-lisp
+  ;; (use-package centaur-tabs
+  ;;   :ensure t
+  ;;   :init
+  ;;   (setq centaur-tabs-enable-key-bindings t)
+  ;;   :config
+  ;;   (setq centaur-tabs-set-bar 'over
+  ;;         centaur-tabs-height 32
+  ;;         centaur-tabs-set-icons t
+  ;;         centaur-tabs-gray-out-icons 'buffer
+  ;;         centaur-tabs-set-modified-marker t
+  ;;         centaur-tabs-modifier-mark "●")
+  ;;         (centaur-tabs-headline-match)
+  ;;   (centaur-tabs-change-fonts "Open Sans" 105)
+  ;;   (centaur-tabs-mode t))
+#+end_src
+
+#+RESULTS:
+
+*** Dashboard
+
+#+begin_src emacs-lisp
+  ;; (use-package dashboard
+  ;;   :ensure t
+  ;;   :config
+  ;;   (setq dashboard-items '((bookmarks . 20)
+  ;;                           (agenda . 20)))
+  ;;   (setq dashboard-set-navigator t
+  ;;         dashboard-agenda-release-buffers nil
+  ;;         dashboard-set-heading-icons 1
+  ;;         dashboard-set-file-icons nil
+  ;;         dashboard-center-content 1
+  ;;         dashboard-startup-banner 'logo)
+  ;;   (dashboard-setup-startup-hook))
+
+  ;; (setq initial-buffer-choice (lambda ()
+  ;;                               (get-buffer-create "*dashboard*")))
 #+end_src
 
 ** File Management
@@ -248,23 +317,16 @@ This file is named =~/.emacs.d/emacs.org= and loaded by [[emacs.d/init.el][~/.em
 *** Doom modeline
 
 #+begin_src emacs-lisp
-(use-package doom-modeline
-  :ensure t
-  :hook
-  (after-init . doom-modeline-mode)
-  :custom
-  (doom-modeline-height 30)
-  :config
-  (setq doom-modeline-enable-word-count t))
-#+end_src
-
-*** Force fonts settings for modeline
-
-#+begin_src emacs-lisp
-  ;; Força a minha definição de fontes na mode line
-  (set-face-attribute 'mode-line nil :font "Inconsolata" :height 100)
-  (set-face-attribute 'mode-line-inactive nil :font "Inconsolata" :height 100)
-
+  (use-package doom-modeline
+    :ensure t
+    :hook
+    (after-init . doom-modeline-mode)
+    :custom
+    (doom-modeline-height 30)
+    (set-face-attribute 'mode-line nil :font "Inconsolata" :height 100)
+    (set-face-attribute 'mode-line-inactive nil :font "Inconsolata" :height 100)
+    :config
+    (setq doom-modeline-enable-word-count t))
 #+end_src
 
 *** Enable matching parenthesis highlight
@@ -481,7 +543,7 @@ Highlights cursor position
     :init (setq markdown-command "pandoc"))
 #+end_src
 
-*** Org mode
+** Org mode
 
 #+begin_src emacs-lisp
   (use-package org
@@ -489,10 +551,17 @@ Highlights cursor position
     :hook (org-mode . debmx/defaults-org)
     :config
     (setq org-support-shift-select t
-          org-hide-emphasis-markers t
+          org-hide-emphasis-markers nil
           org-ellipsis " ▾"
           org-babel-default-header-args '((:results . "output"))
-          org-confirm-babel-evaluate nil)
+          org-confirm-babel-evaluate nil
+          org-agenda-files '("~/org/Tarefas.org"
+                             "~/org/Aulas.org"
+                             "~/org/Cursos.org")
+          org-agenda-start-on-weekday 7
+          org-agenda-start-with-log-mode t
+          org-log-done 'time
+          org-log-into-drawer t)
     (org-babel-do-load-languages
      'org-babel-load-languages
      '((awk . t)
@@ -503,7 +572,7 @@ Highlights cursor position
        (shell . t)
        (php . t)
        (C . t))))
-  
+
   (require 'org-indent)
 #+end_src
 
@@ -511,7 +580,7 @@ Highlights cursor position
 
 #+begin_src emacs-lisp
   (use-package visual-fill-column
-    :ensure t
+    ;; :ensure t
     :hook ('org-mode . 'debmx/visual-fill-column-defaults))
 #+end_src
 
@@ -555,9 +624,22 @@ Highlights cursor position
     :hook (org-mode . org-auto-tangle-mode))
 #+end_src
 
-** Misc tools
+** Org Roam
 
-*** Terminal
+#+begin_src emacs-lisp
+  (use-package org-roam
+    :ensure t
+    :custom
+    (org-roam-directory "~/org/notes")
+    (org-roam-completion-everywhere t)
+    :bind (("C-c n l" . org-roam-buffer-toggle)
+           ("C-c n f" . org-roam-node-find)
+           ("C-c n i" . org-roam-node-insert))
+    :config
+    (org-roam-setup))
+#+end_src
+
+** Terminal
 
 
 Debian requires:
@@ -573,3 +655,4 @@ Debian requires:
     (setq vterm-max-scrollback 10000
           term-prompt-regexp "^[^#$%>\n]*[#$%>] *"))
 #+end_src
+
